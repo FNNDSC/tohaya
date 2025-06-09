@@ -1,0 +1,11 @@
+[package]
+name = "tohaya"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+biblib = { default-features = false, features = ["pubmed"], version = "0.2.3" }
+color-eyre = "0.6.5"
+hayagriva = { version = "0.8.1", default-features = false }
+unic-langid-impl = "0.9.6"
+url = "2.5.4"
