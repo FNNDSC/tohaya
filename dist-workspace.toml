@@ -19,3 +19,4 @@ install-path = "CARGO_HOME"
 publish-jobs = ["homebrew", "npm"]
 # Whether to install an updater program
 install-updater = false
+publish-prereleases = true
