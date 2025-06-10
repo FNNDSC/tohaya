@@ -20,3 +20,6 @@ url = "2.5.4"
 [profile.dist]
 inherits = "release"
 lto = "thin"
+
+[profile.release]
+strip = true
