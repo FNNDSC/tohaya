@@ -1,7 +1,13 @@
 [package]
 name = "tohaya"
-version = "0.1.0"
+description = "Convert citation file formats to hayagriva YAML"
+version = "0.0.1"
 edition = "2024"
+repository = "https://github.com/FNNDSC/tohaya"
+homepage = "https://github.com/FNNDSC/tohaya"
+license = "MIT OR Apache-2.0"
+keywords = ["bibliography", "citation", "pubmed", "hayagriva"]
+categories = ["science", "command-line-utilities"]
 
 [dependencies]
 biblib = { default-features = false, features = ["pubmed"], version = "0.2.3" }
@@ -9,3 +15,8 @@ color-eyre = "0.6.5"
 hayagriva = { version = "0.8.1", default-features = false }
 unic-langid-impl = "0.9.6"
 url = "2.5.4"
+
+# The profile that 'dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"
