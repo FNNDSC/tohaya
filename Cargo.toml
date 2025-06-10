@@ -1,7 +1,7 @@
 [package]
 name = "tohaya"
 description = "Convert citation file formats to hayagriva YAML"
-version = "0.0.1-a.1"
+version = "0.0.1"
 edition = "2024"
 repository = "https://github.com/FNNDSC/tohaya"
 homepage = "https://github.com/FNNDSC/tohaya"

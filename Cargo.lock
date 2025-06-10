@@ -647,7 +647,7 @@ dependencies = [
 
 [[package]]
 name = "tohaya"
-version = "0.0.1-a.1"
+version = "0.0.1"
 dependencies = [
  "biblib",
  "color-eyre",
