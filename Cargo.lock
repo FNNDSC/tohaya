@@ -704,6 +704,8 @@ dependencies = [
  "biblib",
  "color-eyre",
  "hayagriva",
+ "serde_yaml",
+ "thiserror 2.0.12",
  "unic-langid-impl",
  "url",
 ]
