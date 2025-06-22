@@ -10,7 +10,7 @@ keywords = ["bibliography", "citation", "pubmed", "hayagriva"]
 categories = ["science", "command-line-utilities"]
 
 [dependencies]
-biblib = { default-features = false, features = ["pubmed"], version = "0.2.3" }
+biblib = { default-features = false, features = ["pubmed"], git = "https://github.com/AliAzlanDev/biblib.git", rev = "refs/pull/7/head" }
 color-eyre = "0.6.5"
 hayagriva = { version = "0.8.1", default-features = false }
 unic-langid-impl = "0.9.6"

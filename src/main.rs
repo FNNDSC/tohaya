@@ -56,8 +56,13 @@ fn to_entry(citation: biblib::Citation) -> hayagriva::Entry {
         entry.set_parents(vec![parent]);
     }
 
-    if let Some(year) = citation.year {
-        entry.set_date(Date::from_year(year));
+    if let Some(date) = citation.date {
+        entry.set_date(Date {
+            year: date.year,
+            month: date.month,
+            day: date.day,
+            approximate: false,
+        });
     }
     if let Some(pages) = citation.pages {
         entry.set_page_range(MaybeTyped::String(pages));
@@ -108,8 +113,8 @@ fn to_person(author: biblib::Author) -> Person {
 fn key_of(citation: &biblib::Citation) -> String {
     if let Some(author) = citation.authors.first() {
         let name = author.family_name.to_lowercase();
-        if let Some(year) = citation.year {
-            format!("{name}{year}")
+        if let Some(date) = &citation.date {
+            format!("{name}{}", date.year)
         } else {
             name
         }
