@@ -17,6 +17,9 @@ serde_yaml = "0.9.34"
 thiserror = "2.0.12"
 unic-langid-impl = "0.9.6"
 url = "2.5.4"
+clap = { version = "4.5.40", features = ["derive"] }
+fs-err = "3.1.1"
+itertools = "0.14.0"
 
 # The profile that 'dist' will build with
 [profile.dist]
