@@ -1,14 +1,17 @@
 mod error;
-mod pubmed;
 mod guess;
+mod pubmed;
 
 use crate::error::TohayaError;
+use crate::guess::guess_format;
 use crate::pubmed::parse_pubmed;
 pub use error::ParseError;
 use itertools::Itertools;
-use crate::guess::guess_format;
+
+use wasm_bindgen::prelude::*;
 
 /// Citation file formats supported by _tohaya_.
+#[wasm_bindgen]
 #[derive(Copy, Clone, Eq, PartialEq, Debug)]
 pub enum CitationFormat {
     /// BibTeX format
@@ -17,10 +20,9 @@ pub enum CitationFormat {
     Pubmed,
 }
 
-pub fn tohaya<S: AsRef<str>, I: IntoIterator<Item = S>>(
-    inputs: I,
-    format: Option<CitationFormat>,
-) -> Result<String, TohayaError> {
+/// Convert citation file contents to hayagriva YAML.
+#[wasm_bindgen]
+pub fn tohaya(inputs: Vec<String>, format: Option<CitationFormat>) -> Result<String, TohayaError> {
     let library = inputs
         .into_iter()
         .map(|s| to_library(s, format).map(|l| l.into_iter()))

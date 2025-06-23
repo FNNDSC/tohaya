@@ -21,6 +21,11 @@ clap = { version = "4.5.40", features = ["derive"] }
 fs-err = "3.1.1"
 itertools = "0.14.0"
 regex-lite = "0.1.6"
+wasm-bindgen = "0.2.100"
+
+# TODO remove me when nanoid dependency is removed from biblib
+# https://github.com/AliAzlanDev/biblib/issues/8#issuecomment-2989887197
+getrandom = { version = "0.2.16", features = ["js"] }
 
 # The profile that 'dist' will build with
 [profile.dist]
@@ -29,3 +34,13 @@ lto = "thin"
 
 [profile.release]
 strip = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[target.wasm32-unknown-unknown]
+rustflags = ['--cfg', 'getrandom_backend="wasm_js"']
+
+[package.metadata.wasm-pack.profile.release]
+# TODO enable wasm-opt and fix error about --enable-bulk-memory
+wasm-opt = false

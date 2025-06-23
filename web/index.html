@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Convert to Hayagriva</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Convert to Hayagriva">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fnndsc.github.io/tohaya">
+  <meta name="theme-color" content="#2a2a2a">
+  <link rel="stylesheet" href="style.css">
+  <script async src="https://ackee.chrisproject.org/tracker.js" data-ackee-server="https://ackee.chrisproject.org" data-ackee-domain-id="625141ef-5d63-42eb-a551-e3a8ead1f718"></script>
+</head>
+
+<body>
+<div id="grid">
+  <div class="pane">
+    <textarea id="input" placeholder="Paste your BibTeX or PubMed citation here"></textarea>
+  </div>
+  <div class="separator"></div>
+  <div class="pane">
+    <noscript>Please enable JavaScript.</noscript>
+    <div id="output-placeholder" class="disabled-text hidden">loading&hellip;</div>
+    <textarea id="output" class="hidden" readonly></textarea>
+    <div id="error-box" class="error hidden">
+      <div id="error-message"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import init, { tohaya } from './pkg/tohaya.js';
+
+  async function main() {
+    document.getElementById('output-placeholder').classList.remove('hidden');
+    await init();
+    document.getElementById('output-placeholder').textContent = 'Output YAML will appear here';
+
+    const input = document.getElementById('input');
+    update(input.value || '');
+    input.addEventListener('input', (e) => update(e.target.value));
+  }
+
+  function update(input) {
+    if (!input || input.length === 0) {
+      showPlaceholder();
+      return;
+    }
+    try {
+      showOutput(tohaya([input], null));
+    } catch (e) {
+      showError(e);
+    }
+  }
+
+  function showPlaceholder() {
+    document.getElementById('output-placeholder').classList.remove('hidden');
+    document.getElementById('output').classList.add('hidden');
+    document.getElementById('error-box').classList.add('hidden');
+  }
+
+  function showOutput(text) {
+    document.getElementById('output-placeholder').classList.add('hidden');
+    document.getElementById('error-box').classList.add('hidden');
+    const output = document.getElementById('output');
+    output.textContent = text;
+    output.classList.remove('hidden', 'disabled-text');
+    output.addEventListener('click', onOutputClick);
+  }
+
+  function showError(text) {
+    document.getElementById('output-placeholder').classList.add('hidden');
+
+    document.getElementById('error-message').textContent = text;
+    document.getElementById('error-box').classList.remove('hidden');
+
+    const output = document.getElementById('output');
+    output.classList.remove('hidden');
+    output.classList.add('disabled-text');
+    output.removeEventListener('click', onOutputClick);
+  }
+
+  function onOutputClick(event) {
+    event.target.select();
+  }
+
+  main();
+</script>
+</body>
+</html>

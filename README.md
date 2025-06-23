@@ -7,7 +7,12 @@ Supported file formats:
 - [Pubmed](https://pubmed.ncbi.nlm.nih.gov/help/#pubmed-format) (`*.nbib`)
 - BibLaTeX
 
-## Examples
+## Usage
+
+`tohaya` can be used as a web application at https://fnndsc.github.io/tohaya,
+or as a command-line program.
+
+### Examples
 
 ```shell
 # Convert file and create output file
@@ -28,5 +33,4 @@ cat citation.nbib | tohaya - >> bibliography.yml
 
 - [ ] Installation from PyPi using [maturin](https://github.com/PyO3/maturin)
 - [ ] Installation using [pixi](https://pixi.sh/)/[mamba](https://mamba.readthedocs.io)/[conda](https://conda.io)
-- [ ] Web front-end using wasm_bindgen + BibTeX support, see https://github.com/JonasLoos/bibtex-to-hayagriva-webapp
 - [ ] Possible upstream integration with hayagriva, see https://github.com/typst/hayagriva/issues/329

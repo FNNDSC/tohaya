@@ -1,23 +1,19 @@
-use std::cell::LazyCell;
-use regex_lite::Regex;
 use crate::CitationFormat;
+use regex_lite::Regex;
+use std::cell::LazyCell;
 
-const PUBMED: LazyCell<Regex> = LazyCell::new(|| {
-    Regex::new(r"^PMID ?- +\d+").unwrap()
-});
+const PUBMED: LazyCell<Regex> = LazyCell::new(|| Regex::new(r"^PMID ?- +\d+").unwrap());
 
-const BIBTEX: LazyCell<Regex> = LazyCell::new(|| {
-    Regex::new(r"@[a-z]+\{").unwrap()
-});
+const BIBTEX: LazyCell<Regex> = LazyCell::new(|| Regex::new(r"@[a-z]+\{").unwrap());
 
 pub(crate) fn guess_format(text: &str) -> Option<CitationFormat> {
     for line in text.split('\n') {
         if PUBMED.is_match(line) {
-            return Some(CitationFormat::Pubmed)
+            return Some(CitationFormat::Pubmed);
         } else if BIBTEX.is_match(line) {
-            return Some(CitationFormat::Bibtex)
+            return Some(CitationFormat::Bibtex);
         }
-    };
+    }
     None
 }
 

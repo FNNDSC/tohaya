@@ -2,8 +2,9 @@ mod path_arg;
 
 use crate::path_arg::PathArg;
 use clap::{Args, Parser};
+use itertools::Itertools;
 use std::io::Write;
-use tohaya::{tohaya, CitationFormat};
+use tohaya::{CitationFormat, tohaya};
 
 #[derive(Parser)]
 #[command(version, about)]
@@ -55,7 +56,7 @@ fn main() -> color_eyre::Result<()> {
         .input_files
         .into_iter()
         .map(|s| s.read())
-        .collect::<Result<_, _>>()?;
+        .try_collect()?;
     let output = tohaya(inputs, args.format.resolve())?;
     out.write_all(output.as_ref())?;
     Ok(())

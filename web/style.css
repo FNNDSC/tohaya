@@ -1,0 +1,73 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: monospace;
+  background-color: #18181a;
+  color: #ffffff;
+}
+
+#grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.pane {
+  flex: 1 1 0;
+  white-space: nowrap;
+  padding: 1em;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.pane > * {
+  width: 100%;
+  display: block;
+}
+
+.separator {
+  width: 2px;
+  background-color: #292929;
+}
+
+textarea {
+  resize: none;
+  border: none;
+  overflow: auto;
+  outline: none;
+  color: #ffffff;
+  background-color: transparent;
+}
+
+#input {
+  height: 100%;
+  background-color: #292929;
+}
+
+#output {
+  height: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.disabled-text {
+  color: #4d4d4d;
+}
+
+.error {
+  background: #350000;
+  border: 1px solid #a60000;
+  border-radius: 0.25rem;
+}
+
+#error-box > * {
+  margin: 1rem;
+}
