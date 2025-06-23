@@ -1,13 +1,16 @@
 mod path_arg;
 
 use crate::path_arg::PathArg;
-use clap::Parser;
+use clap::{Args, Parser};
 use std::io::Write;
-use tohaya::{CitationFormat, tohaya};
+use tohaya::{tohaya, CitationFormat};
 
 #[derive(Parser)]
 #[command(version, about)]
 struct Cli {
+    #[command(flatten)]
+    format: FormatArg,
+
     /// Append to output file
     #[clap(short, long)]
     append: bool,
@@ -17,6 +20,29 @@ struct Cli {
     /// Input citation file
     #[clap(required = true)]
     input_files: Vec<PathArg>,
+}
+
+#[derive(Args, Copy, Clone)]
+#[group(required = false, multiple = false)]
+struct FormatArg {
+    /// Specify input file is BibLaTeX format (.bib file)
+    #[clap(short, long)]
+    bibtex: bool,
+    /// Specify input file is PubMed format, (.nbib file)
+    #[clap(short, long)]
+    pubmed: bool,
+}
+
+impl FormatArg {
+    fn resolve(self) -> Option<CitationFormat> {
+        if self.bibtex {
+            Some(CitationFormat::Bibtex)
+        } else if self.pubmed {
+            Some(CitationFormat::Pubmed)
+        } else {
+            None
+        }
+    }
 }
 
 fn main() -> color_eyre::Result<()> {
@@ -30,7 +56,7 @@ fn main() -> color_eyre::Result<()> {
         .into_iter()
         .map(|s| s.read())
         .collect::<Result<_, _>>()?;
-    let output = tohaya(inputs, CitationFormat::Pubmed)?;
+    let output = tohaya(inputs, args.format.resolve())?;
     out.write_all(output.as_ref())?;
     Ok(())
 }

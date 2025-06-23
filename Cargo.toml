@@ -12,7 +12,7 @@ categories = ["science", "command-line-utilities"]
 [dependencies]
 biblib = { default-features = false, features = ["pubmed"], git = "https://github.com/AliAzlanDev/biblib.git", rev = "refs/pull/7/head" }
 color-eyre = "0.6.5"
-hayagriva = { version = "0.8.1", default-features = false }
+hayagriva = { version = "0.8.1", default-features = false, features = ["biblatex"] }
 serde_yaml = "0.9.34"
 thiserror = "2.0.12"
 unic-langid-impl = "0.9.6"
@@ -20,6 +20,7 @@ url = "2.5.4"
 clap = { version = "4.5.40", features = ["derive"] }
 fs-err = "3.1.1"
 itertools = "0.14.0"
+regex-lite = "0.1.6"
 
 # The profile that 'dist' will build with
 [profile.dist]
