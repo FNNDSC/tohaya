@@ -57,13 +57,15 @@
 
   function showPlaceholder() {
     document.getElementById('output-placeholder').classList.remove('hidden');
-    document.getElementById('output').classList.add('hidden');
     document.getElementById('error-box').classList.add('hidden');
+    document.getElementById('output').classList.add('hidden');
+    document.getElementById('output').textContent = '';
   }
 
   function showOutput(text) {
     document.getElementById('output-placeholder').classList.add('hidden');
     document.getElementById('error-box').classList.add('hidden');
+    document.getElementById('error-message').textContent = '';
     const output = document.getElementById('output');
     output.textContent = text;
     output.classList.remove('hidden', 'disabled-text');
