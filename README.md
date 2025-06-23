@@ -1,14 +1,20 @@
 # tohaya
 
-Quick-n-dirty converter of PubMed .nbib format to [hayagriva](https://github.com/typst/hayagriva).
-Currently a working WIP.
+Convert citation files to [hayagriva](https://github.com/typst/hayagriva) YAML.
 
-For the most part, `tohaya` is a command-line front-end to [biblib](https://github.com/AliAzlanDev/biblib).
+Supported file formats:
 
-Usage
+- [Pubmed](https://pubmed.ncbi.nlm.nih.gov/help/#pubmed-format) (`*.nbib`)
+- BibLaTeX
+
+## Examples
 
 ```shell
-tohaya < citation.nbib >> bibliography.yml
+# Convert file and create output file
+tohaya citation.nbib --output bibliography.yml
+
+# Alternatively, using pipes
+cat citation.nbib | tohaya - >> bibliography.yml
 ```
 
 ## Installation
@@ -18,15 +24,9 @@ tohaya < citation.nbib >> bibliography.yml
 - **Compile from source**: `cargo install tohaya`
 - [**cargo-binstall**](https://github.com/cargo-bins/cargo-binstall): `cargo binstall tohaya`
 
-## Known Issues
-
-Some fields, such as title, are truncated. See https://github.com/AliAzlanDev/biblib/pull/5
-
 ## Roadmap
 
-- Installation from PyPi using [maturin](https://github.com/PyO3/maturin)
-- Installation using [pixi](https://pixi.sh/)/[mamba](https://mamba.readthedocs.io)/[conda](https://conda.io)
-- More flexible CLI usage
-- Web front-end using wasm_bindgen + BibTeX support, see https://github.com/JonasLoos/bibtex-to-hayagriva-webapp
-- Possible upstream integration with hayagriva, see https://github.com/typst/hayagriva/issues/329
-
+- [ ] Installation from PyPi using [maturin](https://github.com/PyO3/maturin)
+- [ ] Installation using [pixi](https://pixi.sh/)/[mamba](https://mamba.readthedocs.io)/[conda](https://conda.io)
+- [ ] Web front-end using wasm_bindgen + BibTeX support, see https://github.com/JonasLoos/bibtex-to-hayagriva-webapp
+- [ ] Possible upstream integration with hayagriva, see https://github.com/typst/hayagriva/issues/329
