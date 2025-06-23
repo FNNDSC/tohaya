@@ -8,10 +8,11 @@ use crate::pubmed::parse_pubmed;
 pub use error::ParseError;
 use itertools::Itertools;
 
+#[cfg(feature = "wasm")]
 use wasm_bindgen::prelude::*;
 
 /// Citation file formats supported by _tohaya_.
-#[wasm_bindgen]
+#[cfg_attr(feature = "wasm", wasm_bindgen)]
 #[derive(Copy, Clone, Eq, PartialEq, Debug)]
 pub enum CitationFormat {
     /// BibTeX format
@@ -21,7 +22,7 @@ pub enum CitationFormat {
 }
 
 /// Convert citation file contents to hayagriva YAML.
-#[wasm_bindgen]
+#[cfg_attr(feature = "wasm", wasm_bindgen)]
 pub fn tohaya(inputs: Vec<String>, format: Option<CitationFormat>) -> Result<String, TohayaError> {
     let library = inputs
         .into_iter()

@@ -1,5 +1,3 @@
-use wasm_bindgen::prelude::*;
-
 #[derive(thiserror::Error, Debug)]
 pub enum TohayaError {
     #[error(transparent)]
@@ -18,7 +16,8 @@ impl From<biblib::CitationError> for ParseError {
     }
 }
 
-impl From<TohayaError> for JsValue {
+#[cfg(feature = "wasm")]
+impl From<TohayaError> for wasm_bindgen::JsValue {
     fn from(value: TohayaError) -> Self {
         Self::from_str(&value.to_string())
     }
