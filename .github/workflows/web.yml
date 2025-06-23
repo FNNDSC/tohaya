@@ -3,6 +3,7 @@ name: Publish web app
 on:
   release:
     types: [ published ]
+  push: { branches: [ master ] }
 
 jobs:
   build:
