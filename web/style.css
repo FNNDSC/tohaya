@@ -12,7 +12,7 @@ body {
 
 #grid {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   height: 100%;
 }
@@ -26,13 +26,9 @@ body {
   flex-direction: column;
 }
 
-.pane > * {
-  width: 100%;
-  display: block;
-}
-
 .separator {
-  width: 2px;
+  width: auto;
+  height: 2px;
   background-color: #292929;
 }
 
@@ -48,6 +44,7 @@ textarea {
 #input {
   height: 100%;
   background-color: #292929;
+  border-radius: 0.25rem;
 }
 
 #output {
@@ -70,4 +67,15 @@ textarea {
 
 #error-box > * {
   margin: 1rem;
+}
+
+@media only screen and (min-width: 800px) {
+  #grid {
+    flex-direction: row;
+  }
+
+  .separator {
+    height: auto;
+    width: 2px;
+  }
 }
