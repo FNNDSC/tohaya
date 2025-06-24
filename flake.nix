@@ -7,9 +7,7 @@
   outputs = { self, flake-utils, nixpkgs }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = (import nixpkgs) {
-          inherit system;
-        };
+        pkgs = (import nixpkgs) { inherit system; };
       in
       with pkgs;
       {
@@ -22,6 +20,14 @@
             allowBuiltinFetchGit = true;
           };
           cargoBuildFlags = [ "--bins" ];
+        };
+        devShell = mkShell {
+          buildInputs = [
+            # you are assumed to have `rustup` installed globally
+            just
+            wasm-pack
+            live-server
+          ];
         };
       });
 }

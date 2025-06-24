@@ -29,6 +29,24 @@ cat citation.nbib | tohaya - >> bibliography.yml
 - **Compile from source**: `cargo install tohaya`
 - [**cargo-binstall**](https://github.com/cargo-bins/cargo-binstall): `cargo binstall tohaya`
 
+## Development
+
+The CLI can be developed as usual:
+
+```shell
+cargo test
+```
+
+The web app is a plain static HTML file found in [`web/`](./web).
+It requires `tohaya` to be built using
+[wasm-pack](https://rustwasm.github.io/wasm-pack/installer/).
+
+A convenient development environment is provided using [nix](https://nix.dev/manual/nix/2.28/command-ref/new-cli/nix3-develop.html):
+
+```shell
+nix develop -c just
+```
+
 ## Roadmap
 
 - [ ] Installation from PyPi using [maturin](https://github.com/PyO3/maturin)
