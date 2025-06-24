@@ -19,12 +19,9 @@
           src = ./.;
           cargoLock = {
             lockFile = ./Cargo.lock;
-            outputHashes = {
-              "biblib-0.2.4" = "sha256-+hxrnmTZFFx9Xifxy4am7FRs4HFQ3ejhmdpAVh+Y7F8=";
-            };
+            allowBuiltinFetchGit = true;
           };
-          nativeBuildInputs = [ pkg-config ];
-          doCheck = false;
+          cargoBuildFlags = [ "--bins" ];
         };
       });
 }
