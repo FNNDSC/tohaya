@@ -11,12 +11,12 @@ categories = ["science", "command-line-utilities"]
 
 [features]
 default = ["cli"]
-cli = ["dep:clap", "dep:fs-err"]
+cli = ["dep:clap", "dep:fs-err", "dep:color-eyre"]
 wasm = ["dep:wasm-bindgen", "dep:getrandom"]
 
 [dependencies]
 biblib = { default-features = false, features = ["pubmed", "lite"], git = "https://github.com/AliAzlanDev/biblib.git", rev = "75ca62c7682a96c62594b2856a3ae9c84ffafa1e" }
-color-eyre = "0.6.5"
+color-eyre = { version = "0.6.5", optional = true }
 hayagriva = { version = "0.8.1", default-features = false, features = ["biblatex"] }
 serde_yaml = "0.9.34"
 thiserror = "2.0.12"
