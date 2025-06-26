@@ -6,6 +6,7 @@ Supported file formats:
 
 - [Pubmed](https://pubmed.ncbi.nlm.nih.gov/help/#pubmed-format) (`*.nbib`)
 - BibLaTeX
+- Support coming soon: RIS, EndNote XML, CSV
 
 ## Usage
 
@@ -46,6 +47,13 @@ A convenient development environment is provided using [nix](https://nix.dev/man
 ```shell
 nix develop -c just
 ```
+
+## Acknowledgements
+
+- The upstream [typst/hayagriva](https://github.com/typst/hayagriva) project provides
+  the BibTeX -> hayagriva conversion library. It also has a CLI of its own.
+- All input formats besides BibTeX are supported thanks to [biblib](https://crates.io/crates/biblib)
+- Web app design is inspired by [JonasLoos/bibtext-to-hayagriva-webapp](https://github.com/JonasLoos/bibtex-to-hayagriva-webapp)
 
 ## Roadmap
 
