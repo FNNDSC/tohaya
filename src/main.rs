@@ -47,6 +47,7 @@ impl FormatArg {
 }
 
 fn main() -> color_eyre::Result<()> {
+    color_eyre::install()?;
     let args = Cli::parse();
     let mut out = args
         .output_file
